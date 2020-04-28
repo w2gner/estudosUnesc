@@ -31,6 +31,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="Matrícula"
@@ -40,6 +41,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="E-mail"
@@ -49,6 +51,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="Telefone"
@@ -58,6 +61,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="Senha"
@@ -67,6 +71,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="Confirmar Senha"
@@ -76,6 +81,7 @@ function RegisterPage() {
         variant="outlined"
         color="primary"
         size="small"
+        required={true}
       />
 
       <TextField label="Código do Curso"
