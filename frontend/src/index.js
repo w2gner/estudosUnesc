@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import LoginPage from './Components/LoginPage';
 import RegisterPage from './Components/RegisterPage';
-import Dashboard from './Components/Common/Dashboard';
+import Dashboard from './Components/Dashboard';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
