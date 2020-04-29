@@ -12,6 +12,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import MenuBar from '../MenuBar';
 
 const drawerWidth = 240;
 
@@ -45,11 +46,7 @@ export default function ClippedDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Clipped drawer
-          </Typography>
-        </Toolbar>
+        <MenuBar />
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -61,7 +58,7 @@ export default function ClippedDrawer() {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            {['Início', 'Adicionar', 'Salvos', 'Matérias'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
@@ -70,7 +67,7 @@ export default function ClippedDrawer() {
           </List>
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            {['Opção 1', 'Opção 2', 'Opção 3'].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />

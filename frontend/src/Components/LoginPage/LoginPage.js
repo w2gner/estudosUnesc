@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -19,16 +19,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function submitAction() {
-  console.info("Fazendo login...")
-}
-
-function goToRegister() {
-
-}
-
 function LoginPage() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  document.title = "Login";
+  
+  function submitAction() {
+    document.location.replace("/dashboard")
+  }
+  
+  function goToRegister() {
+    document.location.replace("/register")
+  }
+  
   return (
     <div className={classes.root}>
       <div className="centered">
@@ -39,6 +44,7 @@ function LoginPage() {
           variant="outlined"
           color="primary"
           size="small"
+          onChange={event => setEmail(event.target.value)}
           required={true}
         />
 
@@ -50,6 +56,7 @@ function LoginPage() {
           color="primary"
           size="small"
           type="password"
+          onChange={event => setPassword(event.target.value)}
           required={true}
         />
 

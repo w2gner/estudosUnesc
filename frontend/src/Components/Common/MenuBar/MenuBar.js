@@ -115,8 +115,8 @@ export default function MenuBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Minha Conta</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
     </Menu>
   );
 
@@ -163,18 +163,10 @@ export default function MenuBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+          <Typography variant="h6" noWrap>
+            Estudos Unesc
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -189,6 +181,7 @@ export default function MenuBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
