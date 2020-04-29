@@ -30,7 +30,6 @@ function LoginPage(props) {
   }
 
   function goToRegister() {
-    debugger;
     props.history.push("/register");
   }
 
@@ -61,8 +60,8 @@ function LoginPage(props) {
         />
 
         <Typography className={classes.root}>
-          <Link to="register" style={{ marginBottom: 25 }} onClick={goToRegister}>
-            Não possuí conta?
+          <Link style={{ textDecoration: 'none', marginBottom: 25 }} to="register" onClick={goToRegister}>
+            Não possui conta?
           </Link>
         </Typography>
 

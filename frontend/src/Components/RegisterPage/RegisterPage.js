@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function RegisterPage() {
+function RegisterPage(props) {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [registration, setRegistration] = useState("");
@@ -118,7 +118,7 @@ function RegisterPage() {
         onChange={event => setCourseID(event.target.value)}
       />
 
-      <Button style={{ margin: "auto", display: "flex" }}
+      <Button
         type="submit"
         variant="contained"
         color="primary"
@@ -126,6 +126,15 @@ function RegisterPage() {
         onClick={e => submitAction(this)}
         startIcon={<AddCircleIcon />}
       >Criar Usuário
+      </Button>
+
+      <Button style={{ position: "absolute", right: 0 }} to="login"
+        type="submit"
+        variant="contained"
+        color="primary"
+        size="medium"
+        onClick={e => { props.history.put("/login") }}
+      >Cancelar
       </Button>
     </form>
   )
