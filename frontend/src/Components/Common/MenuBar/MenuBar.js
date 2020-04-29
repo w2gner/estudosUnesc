@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuBar() {
+function MenuBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -99,6 +100,12 @@ export default function MenuBar() {
     handleMobileMenuClose();
   };
 
+  function handleExit() {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    document.location.replace("/login")
+  };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -115,7 +122,7 @@ export default function MenuBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Minha Conta</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
+      <MenuItem onClick={handleExit}>Sair</MenuItem>
     </Menu>
   );
 
@@ -222,3 +229,5 @@ export default function MenuBar() {
     </div>
   );
 }
+
+export default MenuBar;

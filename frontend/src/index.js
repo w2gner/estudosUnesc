@@ -9,18 +9,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        <Route exact path="/">
-          <LoginPage />
-        </Route>
-        <Route exact path="/login">
-          <LoginPage />
-        </Route>
-        <Route path="/register">
-          <RegisterPage />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Route exact path="/" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route component={LoginPage} />
       </Switch>
     </Router>
   </React.StrictMode>,
