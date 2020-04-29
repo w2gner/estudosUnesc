@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import './RegisterPage.css'
 
 function submitAction() {
@@ -99,7 +99,7 @@ function RegisterPage() {
         color="primary"
         size="medium"
         onClick={e => submitAction()}
-        startIcon={<SaveIcon />}
+        startIcon={<AddCircleIcon />}
       >Criar Usuário
       </Button>
     </div>
