@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
   return (
     <div>
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <MenuBar />
+          <MenuBar {...props} />
         </AppBar>
         <Drawer />
         <main className={classes.content}>

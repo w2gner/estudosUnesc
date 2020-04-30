@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import React, { useState } from 'react';
+import CancelIcon from '@material-ui/icons/Cancel';
 import './RegisterPage.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -125,7 +126,7 @@ function RegisterPage(props) {
         size="medium"
         onClick={e => submitAction(this)}
         startIcon={<AddCircleIcon />}
-      >Criar Usuário
+      >Confirmar
       </Button>
 
       <Button style={{ position: "absolute", right: 0 }} to="login"
@@ -133,7 +134,8 @@ function RegisterPage(props) {
         variant="contained"
         color="primary"
         size="medium"
-        onClick={e => { props.history.put("/login") }}
+        onClick={e => { props.history.push("/login") }}
+        startIcon={<CancelIcon/>}
       >Cancelar
       </Button>
     </form>

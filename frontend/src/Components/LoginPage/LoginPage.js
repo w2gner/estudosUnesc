@@ -33,6 +33,12 @@ function LoginPage(props) {
     props.history.push("/register");
   }
 
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      submitAction();
+    }
+  }
+
   return (
     <div className={classes.root}>
       <div className="centered">
@@ -56,6 +62,7 @@ function LoginPage(props) {
           size="small"
           type="password"
           onChange={event => setPassword(event.target.value)}
+          onKeyDown={handleKeyDown}
           required={true}
         />
 

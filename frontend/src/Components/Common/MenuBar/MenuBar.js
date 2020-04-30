@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from "react-router-dom";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
+  },
+  palette:{
+    type: 'light'
   },
   sectionDesktop: {
     display: 'none',
@@ -143,7 +146,7 @@ function MenuBar(props) {
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Messagenão pos</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -155,7 +158,7 @@ function MenuBar(props) {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          aria-label="account of current user"
+          aria-label="Conta do usuário atual"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
@@ -201,14 +204,23 @@ function MenuBar(props) {
               </Badge>
             </IconButton>
             <IconButton
-              edge="end"
-              aria-label="account of current user"
+              aria-label="Conta do usuário atual"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <AccountCircle />
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="Sair"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={e => { props.history.push("/login") }}
+              color="inherit"
+            >
+              <ExitToAppIcon />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
