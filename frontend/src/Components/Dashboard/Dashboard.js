@@ -7,8 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-document.title = "Início";
-
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
   const classes = useStyles();
+  document.title = "Início";
   return (
     <div>
       <div className={classes.root}>

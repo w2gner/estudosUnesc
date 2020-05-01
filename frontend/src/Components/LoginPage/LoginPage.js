@@ -50,6 +50,7 @@ function LoginPage(props) {
           color="primary"
           size="small"
           onChange={event => setEmail(event.target.value)}
+          onKeyDown={handleKeyDown}
           required={true}
         />
 

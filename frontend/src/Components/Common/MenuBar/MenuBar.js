@@ -14,6 +14,9 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -65,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
-  palette:{
+  palette: {
     type: 'light'
   },
   sectionDesktop: {
@@ -82,8 +85,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useModalStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    width: '415px',
+    height: '250px',
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 function MenuBar(props) {
   const classes = useStyles();
+  const styleModal = useModalStyles();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -112,6 +132,15 @@ function MenuBar(props) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -124,8 +153,27 @@ function MenuBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Minha Conta</MenuItem>
-      <MenuItem onClick={handleExit}>Sair</MenuItem>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={styleModal.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 350,
+        }}
+      >
+        <Fade in={open}>
+          <div className={styleModal.paper}>
+            <Typography variant="h5" noWrap>
+              <h3 id="transition-modal-title">Perfil</h3>
+              <p id="transition-modal-description">Usuário: Wagner Ghedin</p>
+            </Typography>
+          </div>
+        </Fade>
+      </Modal>
     </Menu>
   );
 
@@ -156,7 +204,7 @@ function MenuBar(props) {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleOpen}>
         <IconButton
           aria-label="Conta do usuário atual"
           aria-controls="primary-search-account-menu"
@@ -207,7 +255,7 @@ function MenuBar(props) {
               aria-label="Conta do usuário atual"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleOpen}
               color="inherit"
             >
               <AccountCircle />

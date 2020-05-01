@@ -135,7 +135,7 @@ function RegisterPage(props) {
         color="primary"
         size="medium"
         onClick={e => { props.history.push("/login") }}
-        startIcon={<CancelIcon/>}
+        startIcon={<CancelIcon />}
       >Cancelar
       </Button>
     </form>
