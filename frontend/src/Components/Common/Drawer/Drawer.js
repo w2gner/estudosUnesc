@@ -13,6 +13,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -39,6 +40,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function redirect(text) {
+  switch (text) {
+    case 'Início': return '/home'
+    case 'Adicionar': return '/add'
+    case 'Salvos': return '/stored'
+    case 'Matérias': return '/materia'
+    default: return 'dashboard/home'
+  }
+
+}
+
 export default function ClippedDrawer() {
   const classes = useStyles();
 
@@ -55,11 +67,14 @@ export default function ClippedDrawer() {
         <div className={classes.drawerContainer}>
           <List>
             {['Início', 'Adicionar', 'Salvos', 'Matérias'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index === 0 ? <HomeRoundedIcon /> : index === 1 ? <AddBoxRoundedIcon /> : index === 2 ?
-                  <StarRoundedIcon /> : <MenuBookRoundedIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+              <NavLink to={redirect}>
+                <ListItem button key={text}>
+                  <ListItemIcon>{index === 0 ? <HomeRoundedIcon /> : index === 1 ? <AddBoxRoundedIcon /> : index === 2 ?
+                    <StarRoundedIcon /> : <MenuBookRoundedIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </NavLink>
             ))}
           </List>
           <Divider />

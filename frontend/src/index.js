@@ -11,7 +11,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard/home" component={Dashboard} />
         <Route component={LoginPage} />
       </Switch>
     </Router>

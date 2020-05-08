@@ -26,7 +26,7 @@ function LoginPage(props) {
   document.title = "Login";
 
   function submitAction() {
-    props.history.push("/dashboard");
+    props.history.push("/dashboard/home");
   }
 
   function goToRegister() {
