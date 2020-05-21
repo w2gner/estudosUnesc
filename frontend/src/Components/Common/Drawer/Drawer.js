@@ -42,11 +42,11 @@ const useStyles = makeStyles((theme) => ({
 
 function redirect(text) {
   switch (text) {
-    case 'Início': return '/dashboard/home'
-    case 'Adicionar': return '/dashboard/add'
-    case 'Salvos': return '/dashboard/stored'
-    case 'Matérias': return '/dashboard/materia'
-    default: return 'dashboard/home'
+    case 'Início': return '/dashboard'
+    case 'Adicionar': return '/add'
+    case 'Salvos': return '/stored'
+    case 'Matérias': return '/materia'
+    default: return 'dashboard'
   }
 
 }
