@@ -42,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
 
 function redirect(text) {
   switch (text) {
-    case 'Início': return '/home'
-    case 'Adicionar': return '/add'
-    case 'Salvos': return '/stored'
-    case 'Matérias': return '/materia'
+    case 'Início': return '/dashboard/home'
+    case 'Adicionar': return '/dashboard/add'
+    case 'Salvos': return '/dashboard/stored'
+    case 'Matérias': return '/dashboard/materia'
     default: return 'dashboard/home'
   }
 
@@ -67,7 +67,12 @@ export default function ClippedDrawer() {
         <div className={classes.drawerContainer}>
           <List>
             {['Início', 'Adicionar', 'Salvos', 'Matérias'].map((text, index) => (
-              <NavLink to={redirect}>
+              <NavLink
+              style={{textDecoration: "none", color: "black"}} 
+              to={redirect(text)}
+              activeStyle={{color: "#445ce0", fontWeight: "", backgroundColor: "black"}}
+              className=".Mui-focusVisible"
+              >
                 <ListItem button key={text}>
                   <ListItemIcon>{index === 0 ? <HomeRoundedIcon /> : index === 1 ? <AddBoxRoundedIcon /> : index === 2 ?
                     <StarRoundedIcon /> : <MenuBookRoundedIcon />}
