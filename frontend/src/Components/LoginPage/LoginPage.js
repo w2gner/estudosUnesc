@@ -5,28 +5,35 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    color: 'dark'
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '25ch',
-  },
+  alert: {
+    width: '25%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+    marginLeft: '38%'
+  }
 }));
 
 function LoginPage(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = React.useState(true)
   document.title = "Login";
 
   function submitAction() {
-    props.history.push("/dashboard");
+    if (email.length === 0 || password.length === 0) {
+      //console.log("Erro")
+      setOpen(true);
+    } else {
+      props.history.push("/dashboard");
+    }
   }
 
   function goToRegister() {
@@ -40,8 +47,27 @@ function LoginPage(props) {
   }
 
   return (
-    <div className={classes.root}>
-      <div className="centered">
+    <div className="centered">
+      <Collapse in={open}>
+        <Alert
+          severity="warning"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Preencha todos os campos!
+            </Alert>
+      </Collapse>
+      <section>
         <TextField label="E-mail"
           style={{ width: 300 }}
           id="email"
@@ -67,13 +93,15 @@ function LoginPage(props) {
           required={true}
         />
 
-        <Typography className={classes.root}>
+        <Typography>
           <Link style={{ textDecoration: 'none', marginBottom: 25 }} to="register" onClick={goToRegister}>
             Não possui conta?
           </Link>
         </Typography>
 
-        <Button to="login" style={{ margin: "auto", display: "flex" }}
+        <Button
+          style={{ margin: "auto", marginTop: "15px", display: "flex" }}
+          to="login"
           type="submit"
           variant="contained"
           color="primary"
@@ -82,7 +110,7 @@ function LoginPage(props) {
           startIcon={<ArrowUpwardIcon />}
         >Login
       </Button>
-      </div>
+      </section>
     </div>
   )
 }
