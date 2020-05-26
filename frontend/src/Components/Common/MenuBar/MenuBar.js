@@ -17,6 +17,15 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import teal from '@material-ui/core/colors/teal';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -69,7 +78,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   palette: {
-    type: 'light'
+    primary: teal,
+    secondary: lightBlue,
   },
   sectionDesktop: {
     display: 'none',
@@ -102,13 +112,19 @@ const useModalStyles = makeStyles((theme) => ({
 
 function MenuBar(props) {
   const classes = useStyles();
-  const styleModal = useModalStyles();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -132,19 +148,12 @@ function MenuBar(props) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
+
     <Menu
+      color={classes.palette}
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
@@ -153,27 +162,49 @@ function MenuBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={styleModal.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 350,
-        }}
-      >
-        <Fade in={open}>
-          <div className={styleModal.paper}>
-            <Typography variant="h5" noWrap>
-              <h3 id="transition-modal-title">Perfil</h3>
-              <p id="transition-modal-description">Usuário: Wagner Ghedin</p>
-            </Typography>
-          </div>
-        </Fade>
-      </Modal>
+
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Meu Perfil</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Para atualizar as suas informações relacionadas ao seu perfil preecha os campos abaixo:
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            className="form"
+            id="name"
+            label="Nome"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            className="form"
+            label="Senha"
+            type="password"
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            className="form"
+            id="password"
+            label="Confirmar Senha"
+            type="password"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancelar
+                </Button>
+          <Button onClick={handleClose} color="primary">
+            Atualizar
+              </Button>
+        </DialogActions>
+      </Dialog>
     </Menu>
   );
 
@@ -194,7 +225,7 @@ function MenuBar(props) {
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messagenão pos</p>
+        <p>Messagens</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -220,8 +251,8 @@ function MenuBar(props) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+      <AppBar position="fixed" className={classes.palette}>
+        <Toolbar color={classes.palette}>
           <Typography variant="h6" noWrap>
             Estudos Unesc
           </Typography>

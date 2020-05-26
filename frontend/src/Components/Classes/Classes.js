@@ -3,14 +3,13 @@ import MenuBar from '../Common/MenuBar';
 import Drawer from '../Common/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
+import './Classes.css'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '70px',
     display: 'flex',
   },
   appBar: {
@@ -32,23 +31,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard(props) {
+export default function Classes(props) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(true);
-  document.title = "Início";
+  document.title = "Minhas Aulas";
   return (
-    <div>
+    <div className="Classes">
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <MenuBar {...props} />
         </AppBar>
         <Drawer />
-        <main className={classes.content}>
-          <Grow in={checked}>
-            <h1>Dashboard</h1>
-          </Grow>
-        </main>
+        <Grow in={checked}>
+          <main className={classes.content}>
+            <h1>Minhas Aulas</h1>
+          </main>
+        </Grow>
       </div>
     </div>
   )

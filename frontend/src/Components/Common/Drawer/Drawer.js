@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom'
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -43,9 +43,10 @@ const useStyles = makeStyles((theme) => ({
 function redirect(text) {
   switch (text) {
     case 'Início': return '/dashboard'
-    case 'Adicionar': return '/add'
-    case 'Salvos': return '/stored'
-    case 'Matérias': return '/materia'
+    case 'Adicionar Conteúdo': return '/addContent'
+    case 'Minhas Disciplinas': return '/subjects'
+    case 'Minhas Aulas': return '/classes'
+    case 'Meus Exercícios': return '/exercises'
     default: return 'dashboard'
   }
 
@@ -53,7 +54,7 @@ function redirect(text) {
 
 export default function ClippedDrawer() {
   const classes = useStyles();
-
+  const history = useHistory();
   return (
     <div className={classes.root}>
       <Drawer
@@ -66,12 +67,12 @@ export default function ClippedDrawer() {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Início', 'Adicionar', 'Salvos', 'Matérias'].map((text, index) => (
+            {['Início', 'Adicionar Conteúdo','Minhas Disciplinas', 'Minhas Aulas', 'Meus Exercícios'].map((text, index) => (
               <NavLink
-              style={{textDecoration: "none", color: "black"}} 
-              to={redirect(text)}
-              activeStyle={{color: "#445ce0", fontWeight: "", backgroundColor: "black"}}
-              className=".Mui-focusVisible"
+                style={{ textDecoration: "none", color: "black" }}
+                to={redirect(text)}
+                activeStyle={{ color: "#445ce0", fontWeight: "", backgroundColor: "black" }}
+                className=".Mui-focusVisible"
               >
                 <ListItem button key={text}>
                   <ListItemIcon>{index === 0 ? <HomeRoundedIcon /> : index === 1 ? <AddBoxRoundedIcon /> : index === 2 ?
@@ -80,15 +81,6 @@ export default function ClippedDrawer() {
                   <ListItemText primary={text} />
                 </ListItem>
               </NavLink>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['Opção 1', 'Opção 2', 'Opção 3'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
             ))}
           </List>
         </div>

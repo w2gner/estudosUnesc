@@ -1,7 +1,18 @@
-.centered{
+
+.logon-container{
     width: 300px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.logon-container ul.options {
+    margin-top: 0px;
+    padding: 0px;
+    display: flex;
+}
+
+.logon-container ul.options Link.link1:hover{
+    text-decoration: underline;
 }
