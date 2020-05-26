@@ -7,13 +7,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import { NavLink } from 'react-router-dom';
+import ClassRoundedIcon from '@material-ui/icons/ClassRounded';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const drawerWidth = 240;
 
@@ -40,21 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function redirect(text) {
-  switch (text) {
-    case 'Início': return '/dashboard'
-    case 'Adicionar Conteúdo': return '/addContent'
-    case 'Minhas Disciplinas': return '/subjects'
-    case 'Minhas Aulas': return '/classes'
-    case 'Meus Exercícios': return '/exercises'
-    default: return 'dashboard'
-  }
-
-}
-
 export default function ClippedDrawer() {
   const classes = useStyles();
   const history = useHistory();
+
   return (
     <div className={classes.root}>
       <Drawer
@@ -67,24 +54,44 @@ export default function ClippedDrawer() {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Início', 'Adicionar Conteúdo','Minhas Disciplinas', 'Minhas Aulas', 'Meus Exercícios'].map((text, index) => (
-              <NavLink
-                style={{ textDecoration: "none", color: "black" }}
-                to={redirect(text)}
-                activeStyle={{ color: "#445ce0", fontWeight: "", backgroundColor: "black" }}
-                className=".Mui-focusVisible"
-              >
-                <ListItem button key={text}>
-                  <ListItemIcon>{index === 0 ? <HomeRoundedIcon /> : index === 1 ? <AddBoxRoundedIcon /> : index === 2 ?
-                    <StarRoundedIcon /> : <MenuBookRoundedIcon />}
+            {['Início', 'Adicionar Conteúdo', 'Minhas Disciplinas',
+              'Minhas Aulas', 'Meus Exercícios'].map((text, index) => (
+                <ListItem
+                  onClick={e => {
+                    switch (text) {
+                      case 'Início':
+                        history.push('/dashboard');
+                        break;
+                      case 'Adicionar Conteúdo':
+                        history.push('/addContent');
+                        break;
+                      case 'Minhas Disciplinas':
+                        history.push('/subjects')
+                        break;
+                      case 'Minhas Aulas':
+                        history.push('/classes');
+                        break;
+                      case 'Meus Exercícios':
+                        history.push('/exercises');
+                        break;
+                      default:
+                        history.push('/dashboard');
+                    }
+                  }}
+                  button key={text}
+                >
+                  <ListItemIcon>{index === 0 ? <HomeRoundedIcon />
+                    : index === 1 ? <AddBoxRoundedIcon />
+                      : index === 2 ? <ClassRoundedIcon />
+                        : index === 3 ? <MenuBookRoundedIcon />
+                          : <AssignmentIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
-              </NavLink>
-            ))}
+              ))}
           </List>
         </div>
       </Drawer>
-    </div>
+    </div >
   );
 }

@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddContent(props) {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(true);
   document.title = "Adicionar Conteúdo";
   return (
     <div className="load-container">
@@ -49,7 +48,7 @@ export default function AddContent(props) {
           <MenuBar {...props} />
         </AppBar>
         <Drawer />
-        <Grow in={checked}>
+        <Grow in={true}>
           <div className="Add">
             <Typography
               style={{ marginBottom: '15px' }}
@@ -72,10 +71,9 @@ export default function AddContent(props) {
                 startIcon={<CloudUploadIcon />}
               >
                 Upload
-                </Button>
+              </Button>
             </label>
           </div>
-
         </Grow>
       </div>
     </div>

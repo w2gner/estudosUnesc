@@ -14,11 +14,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -26,6 +22,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import teal from '@material-ui/core/colors/teal';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import { useHistory } from 'react-router-dom';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import './MenuBar.css'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -95,28 +97,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useModalStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    width: '415px',
-    height: '250px',
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-function MenuBar(props) {
+function MenuBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [open, setOpen] = React.useState(false);
+  let history = useHistory();
 
   const handleOpen = () => {
     setOpen(true);
@@ -124,10 +112,6 @@ function MenuBar(props) {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -139,19 +123,12 @@ function MenuBar(props) {
     handleMobileMenuClose();
   };
 
-  function handleExit() {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-    document.location.replace("/login")
-  };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
-
     <Menu
       color={classes.palette}
       anchorEl={anchorEl}
@@ -162,39 +139,49 @@ function MenuBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Meu Perfil</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Para atualizar as suas informações relacionadas ao seu perfil preecha os campos abaixo:
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            className="form"
-            id="name"
-            label="Nome"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="password"
-            className="form"
-            label="Senha"
-            type="password"
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            className="form"
-            id="password"
-            label="Confirmar Senha"
-            type="password"
-            fullWidth
-          />
+          <FormControl margin="dense" className="input">
+            <InputLabel htmlFor="input-with-icon-adornment">Nome</InputLabel>
+            <Input
+              id="input-with-icon-adornment"
+              startAdornment={
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <br />
+          <FormControl margin="dense" className="input">
+            <InputLabel htmlFor="input-with-icon-adornment">Senha</InputLabel>
+            <Input
+              id="input-with-icon-adornment"
+              type="password"
+              startAdornment={
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <br />
+          <FormControl margin="dense" className="input">
+            <InputLabel htmlFor="input-with-icon-adornment">Confirmar Senha</InputLabel>
+            <Input
+              id="input-with-icon-adornment"
+              type="password"
+              startAdornment={
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -225,7 +212,7 @@ function MenuBar(props) {
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messagens</p>
+        <p>Mensagens</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -233,7 +220,7 @@ function MenuBar(props) {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Notificações</p>
       </MenuItem>
       <MenuItem onClick={handleOpen}>
         <IconButton
@@ -244,7 +231,7 @@ function MenuBar(props) {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Perfil</p>
       </MenuItem>
     </Menu>
   );
@@ -296,7 +283,7 @@ function MenuBar(props) {
               aria-label="Sair"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={e => { props.history.push("/login") }}
+              onClick={event => history.push("/login")}
               color="inherit"
             >
               <ExitToAppIcon />

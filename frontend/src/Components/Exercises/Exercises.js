@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Exercises(props) {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(true);
   document.title = "Meus Exercícios";
   return (
     <div className="Exercises">
@@ -43,7 +42,7 @@ export default function Exercises(props) {
           <MenuBar {...props} />
         </AppBar>
         <Drawer />
-        <Grow in={checked}>
+        <Grow in={true}>
           <main className={classes.content}>
             <h1>Meus Exercícios</h1>
           </main>

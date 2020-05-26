@@ -64,17 +64,10 @@ function generate(element) {
   );
 }
 
-function renderAddSubjects() {
-  return (
-    <h1>Adicionar matérias</h1>
-  )
-}
-
 export default function Subjects(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
-  const [mySubjects, setMySubjects] = React.useState(true);
   const [checked, setChecked] = React.useState(true);
   const [open, setOpen] = React.useState(false);
 
