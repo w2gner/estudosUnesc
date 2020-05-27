@@ -44,13 +44,14 @@ function RegisterPage(props) {
       password.length === 0 || confirmPassword.length === 0 || courseID.length === 0) {
       setAlertOpen(true);
     } else if (password !== confirmPassword) {
+      setAlertOpen(false);
       setPasswordError(true);
       setConfirmPasswordError(true);
     } else {
+      setSuccessAlert(true);
       setTimeout(() => {
-        setSuccessAlert(true);
         history.push("/login");
-      }, 2000);
+      }, 1500);
     }
   }
 
