@@ -8,6 +8,8 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import './AddContent.css';
 
 const drawerWidth = 240;
@@ -37,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const contents = [
+  { title: "Matéria 1" },
+  { title: "Matéria 2" }
+]
+
 export default function AddContent(props) {
   const classes = useStyles();
   document.title = "Adicionar Conteúdo";
@@ -50,6 +57,24 @@ export default function AddContent(props) {
         <Drawer />
         <Grow in={true}>
           <div className="Add">
+            <section>
+              <TextField label="Título do conteúdo"
+                style={{ width: 300, marginBottom: 25 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required={true}
+                onChange={event => { }}
+              />
+              <Autocomplete
+                style={{ width: 300, marginBottom: 50 }}
+                options={contents}
+                getOptionLabel={(option) => option.title}
+                size="small"
+                required={true}
+                renderInput={(params) => <TextField {...params} label="Disciplina" variant="outlined" />}
+              />
+            </section>
             <Typography
               style={{ marginBottom: '15px' }}
               className="Add">
